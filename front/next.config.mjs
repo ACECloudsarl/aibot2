@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   env: {
-      NEXT_PUBLIC_API_URL: "http://localhost:3002",
+      NEXT_PUBLIC_API_URL: "http://176.97.124.65:3002",
       NEXT_PUBLIC_R2_ENDPOINT: "https://8c71d4697a2b779352e54a5c62c0448f.eu.r2.cloudflarestorage.com/aistorage",
       NEXT_PUBLIC_R2_PUBLIC_URL: "https://bucket.pixporn.com",
       NEXT_PUBLIC_R2_BUCKET_NAME: "aistorage",
@@ -16,11 +16,11 @@ const nextConfig = {
       return [
           {
               source: '/api/:path*',
-              destination: 'http://localhost:3002/:path*' // Proxy to Feathers
+              destination: 'http://176.97.124.65:3002/:path*' // Proxy to Feathers
           },
           {
               source: '/uploads/:path*',
-              destination: 'http://localhost:3002/uploads/:path*' // Proxy to Feathers uploads
+              destination: 'http://176.97.124.65:3002/uploads/:path*' // Proxy to Feathers uploads
           }
       ]
   }

@@ -85,19 +85,32 @@ export const userAPI = {
 // Chats API
 export const chatAPI = {
   // Get user's chats
-  getChats: async () => {
-    try {
-      const chats = await client.service('chats').find({
-        query: {
-          $sort: { updated_at: -1 }
+ // Get user's chats
+ getChats: async () => {
+  try {
+    const chats = await client.service('chats').find({
+      query: {
+        $sort: { 
+          // Use _id for sorting instead of updated_at
+          _id: -1 
         }
-      });
-      return { success: true, chats: chats.data };
-    } catch (error) {
-      console.error('Get chats error:', error);
-      return { success: false, error, chats: [] };
-    }
-  },
+      }
+    });
+    
+    return { 
+      success: true, 
+      chats: chats.data || [] 
+    };
+  } catch (error) {
+    console.error('Get chats error:', error);
+    return { 
+      success: false, 
+      error, 
+      chats: [] 
+    };
+  }
+},
+
 
   // Get a single chat
   getChat: async (chatId) => {

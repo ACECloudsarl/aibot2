@@ -2,9 +2,7 @@
   "host": "0.0.0.0",
   "port": 3002,
   "public": "./public/",
-  "origins": [
-    "http://176.97.124.65:3002"
-  ],
+  "origins": "*",
   "paginate": {
     "default": 10,
     "max": 50

@@ -1,4 +1,4 @@
-// src/services/chats/chats.schema.ts - Updated schema
+// src/services/chats/chats.schema.ts - Updated to allow sorting
 import { resolve } from '@feathersjs/schema';
 import { Type, getValidator, querySyntax } from '@feathersjs/typebox';
 import { ObjectIdSchema } from '@feathersjs/typebox';
@@ -52,9 +52,27 @@ export const chatsPatchResolver = resolve<Chats, HookContext<ChatsService>>({
 });
 
 // Schema for allowed query properties
-export const chatsQueryProperties = Type.Pick(chatsSchema, ['_id', 'title', 'user_id', 'model']);
+export const chatsQueryProperties = Type.Object({
+  _id: Type.Optional(Type.Union([
+    Type.String(),
+    Type.Object({
+      $gt: Type.String(),
+      $lt: Type.String()
+    })
+  ])),
+  user_id: Type.Optional(Type.String()),
+  title: Type.Optional(Type.String()),
+  model: Type.Optional(Type.String()),
+  $sort: Type.Optional(Type.Object({
+    _id: Type.Optional(Type.Union([Type.Literal(1), Type.Literal(-1)])),
+    title: Type.Optional(Type.Union([Type.Literal(1), Type.Literal(-1)])),
+    created_at: Type.Optional(Type.Union([Type.Literal(1), Type.Literal(-1)])),
+    updated_at: Type.Optional(Type.Union([Type.Literal(1), Type.Literal(-1)]))
+  }))
+}, { additionalProperties: false });
+
 export const chatsQuerySchema = Type.Intersect(
-  [
+  [ 
     querySyntax(chatsQueryProperties),
     Type.Object({}, { additionalProperties: false })
   ],

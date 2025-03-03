@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { useParams, useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
+import { useAuth } from "@/contexts/AuthContext";
 import { useChat } from "@/contexts/ChatContext";
 import Sidebar from "@/components/layout/Sidebar";
 import MobileSidebar from "@/components/layout/MobileSidebar";
@@ -21,7 +21,7 @@ export default function ChatPage() {
   
   const { id } = useParams();
   const router = useRouter();
-  const { data: session, status } = useSession();
+  const { data: session, status } = useAuth();
   const { 
     chatList,
     setCurrentChat,

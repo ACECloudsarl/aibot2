@@ -2,15 +2,15 @@
 
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
+import { useAuth } from "@/contexts/AuthContext";
 import { useChat } from "@/contexts/ChatContext";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 export default function HomePage() {
   const router = useRouter();
-  const { data: session, status } = useSession();
+  const { data: session, status } = useAuth();
   const { chatList, createNewChat, isLoadingChats } = useChat();
-  
+   
   // Check if user is authenticated
   const isAuthenticated = status === "authenticated";
   const isLoading = status === "loading";
