@@ -1,0 +1,44 @@
+{
+  "host": "0.0.0.0",
+  "port": 3002,
+  "public": "./public/",
+  "origins": [
+    "http://176.97.124.65:3002"
+  ],
+  "paginate": {
+    "default": 10,
+    "max": 50
+  },
+  "mongodb": "mongodb+srv://admin:SiMoX1234@cluster0.j8fvx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0",
+  "authentication": {
+    "entity": "user",
+    "service": "users",
+    "secret": "/+fTVs3hjJykHwOYJd/V4Wp+0JnAYtSJ",
+    "authStrategies": [
+      "jwt",
+      "local"
+    ],
+    "jwtOptions": {
+      "header": {
+        "typ": "access"
+      },
+      "audience": "https://yourdomain.com",
+      "algorithm": "HS256",
+      "expiresIn": "1d"
+    },
+    "local": {
+      "usernameField": "email",
+      "passwordField": "password"
+    },
+    "oauth": {
+      "google": {
+        "key": "<Client ID>",
+        "secret": "<Client secret>"
+      },
+      "facebook": {
+        "key": "<Client ID>",
+        "secret": "<Client secret>"
+      }
+    }
+  }
+}
